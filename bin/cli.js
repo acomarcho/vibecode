@@ -30,6 +30,14 @@ async function main() {
   const cwd = process.cwd();
   const targetPath = path.join(cwd, targetDir);
 
+  // Ask if user wants to add the prompt folder to .gitignore
+  const gitignoreResponse = await prompts({
+    type: 'confirm',
+    name: 'value',
+    message: `Include ${targetDir} folder to .gitignore?`,
+    initial: true
+  });
+
   // Source directory (where prompts are stored in the npm package)
   const sourceDir = path.join(__dirname, '..', 'prompts');
 
@@ -67,6 +75,36 @@ async function main() {
   });
 
   console.log(`\nSuccessfully copied prompts to ${targetDir}/`);
+
+  // Add to .gitignore if confirmed
+  if (gitignoreResponse.value) {
+    const gitignorePath = path.join(cwd, '.gitignore');
+    let gitignoreContent = '';
+    
+    // Read existing .gitignore or create new one
+    if (fs.existsSync(gitignorePath)) {
+      gitignoreContent = fs.readFileSync(gitignorePath, 'utf8');
+    }
+    
+    // Check if the target directory is already in .gitignore
+    const gitignoreLines = gitignoreContent.split('\n');
+    const targetDirInGitignore = gitignoreLines.some(line =>
+      line.trim() === targetDir || line.trim() === `${targetDir}/`
+    );
+    
+    if (!targetDirInGitignore) {
+      // Add the target directory to .gitignore
+      if (gitignoreContent && !gitignoreContent.endsWith('\n')) {
+        gitignoreContent += '\n';
+      }
+      gitignoreContent += `${targetDir}/\n`;
+      
+      fs.writeFileSync(gitignorePath, gitignoreContent);
+      console.log(`Added ${targetDir}/ to .gitignore`);
+    } else {
+      console.log(`${targetDir}/ is already in .gitignore`);
+    }
+  }
 }
 
 main().catch(err => {

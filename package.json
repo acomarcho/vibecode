@@ -1,0 +1,17 @@
+{
+  "name": "@acomarcho/vibecode",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "acomarcho",
+  "bin": {
+    "vibecode": "bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "prompts"
+  ],
+  "dependencies": {
+    "prompts": "^2.4.2"
+  }
+}

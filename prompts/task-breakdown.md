@@ -33,11 +33,7 @@
     <input>Repository access via shell commands (read-only).</input>
   </inputs>
   <outputs>
-    <output>Edited PRD with a new final section titled “### Task Breakdown”.</output>
-    <output>Updated “### 4. Relevant Files to Review” that includes:  
-      (a) any additional files you examined for context, marked (ADDED FOR CONTEXT), and  
-      (b) new files that must be created, marked (NEW).
-    </output>
+    <output>Concise summary of the breakdown approach (2-4 bullets describing how tasks were organized).</output>
   </outputs>
 </section>
 
@@ -107,10 +103,15 @@
 
 <section title="Output Format (What you must return)">
   <format>
-    Return the **entire updated PRD**, with:
-    1) Updated “### 4. Relevant Files to Review” reflecting actual and new files.  
-    2) Appended “### Task Breakdown” section containing the <task>…</task> block.
-    Do not output explanations or comments outside the PRD.
+    Return a concise summary of the breakdown:
+    - Number of main tasks created
+    - Brief description of each major area (1-2 sentences per task group)
+    - Any key files identified or proposed
+    Do NOT return the full updated PRD text.
+
+    Silently update the PRD file with:
+    1) Updated "### 4. Relevant Files to Review" reflecting actual and new files.
+    2) Appended "### Task Breakdown" section containing the <task>…</task> block.
   </format>
 </section>
 

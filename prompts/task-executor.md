@@ -26,12 +26,7 @@
     <input>User instruction specifying which tasks (by number/range) to execute now.</input>
   </inputs>
   <outputs>
-    <output>Code diffs / patches / file contents that implement ONLY the requested tasks.</output>
-    <output>Updated PRD:
-      1) Add any additionally-read files under “### 4. Relevant Files to Review” labeled (ADDED FOR CONTEXT).
-      2) Mark completed tasks with - [x] and leave untouched tasks as - [ ].
-      3) Brief “Changes Summary” describing edits and assumptions (short bullets).
-    </output>
+    <output>Concise summary of what was done (short bullets describing key edits and assumptions).</output>
   </outputs>
 </section>
 
@@ -57,23 +52,13 @@
   <guideline number="6">Data and migrations: keep schema changes minimal and backwards-safe. Provide one-shot migration steps if needed.</guideline>
 </section>
 
-<section title="Producing Code Changes">
-  <format>
-    When returning edits, use clear, review-ready snippets per file:
-    FILE: path/to/file.ext
-    --- before (context if needed)
-    +++ after
-    (show only relevant hunks)
-    For new files, label as (NEW) and provide full content.
-  </format>
-</section>
-
-<section title="Updating the PRD">
+<section title="Internal Work (Do Not Show to User in Response)">
   <instructions>
-    After implementing the requested tasks, modify the PRD text as follows:
-    1) In “### 4. Relevant Files to Review”, preserve the original list, then append any additionally-read files as “- path (ADDED FOR CONTEXT): one-line why it was read”. Add any created files as “(NEW)”.
-    2) In the task list, change “- [ ]” to “- [x]” for the tasks you executed. Do not alter unchecked tasks.
-    3) Add a short “### Changes Summary” section with bullet points describing what changed and any minimal assumptions made.
+    After implementing the requested tasks, silently update the PRD file as follows:
+    1) In "### 4. Relevant Files to Review", preserve the original list, then append any additionally-read files as "- path (ADDED FOR CONTEXT): one-line why it was read". Add any created files as "(NEW)".
+    2) In the task list, change "- [ ]" to "- [x]" for the tasks you executed. Do not alter unchecked tasks.
+    3) Add a short "### Changes Summary" section with bullet points describing what changed and any minimal assumptions made.
+    Do NOT show code diffs or the full updated PRD to the user.
   </instructions>
 </section>
 
@@ -85,12 +70,11 @@
 
 <section title="Output Format (What you must return)">
   <format>
-    Return two parts in order:
-    1) The code changes (grouped by file) implementing only the requested tasks.
-    2) The Updated PRD (full text), with:
-       - Updated “### 4. Relevant Files to Review” (including (ADDED FOR CONTEXT) and (NEW)).
-       - Task checkboxes updated (- [x] for completed).
-       - A concise “### Changes Summary”.
+    Return a concise summary of what was implemented:
+    - List completed tasks by number
+    - Describe key changes in 2-4 short bullets
+    - Note any assumptions or dependencies
+    Do NOT return code diffs or the full PRD text.
   </format>
 </section>
 

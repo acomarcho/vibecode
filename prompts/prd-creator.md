@@ -34,19 +34,33 @@
     ### 3. Target State  
     Describe what the system should look like after the new feature or product is implemented.
 
-    ### 4. Relevant Files to Review  
+    ### 4. User Stories  
+    List high-level user stories using the format: "As a <user-type>, I want to <do-something> so that <benefit>."  
+    Focus on the primary user personas and their core needs.
+
+    ### 5. Functional Requirements  
+    Clearly define what the feature should do and should NOT do.  
+    Include specific behaviors, constraints, and acceptance criteria.  
+    Use bullet points for clarity and be explicit about both inclusions and exclusions.
+
+    ### 6. Technical Design (High-Level)  
+    Provide detailed technical design without writing any code.  
+    Include bullet points covering:  
+    - System architecture and component interactions  
+    - Data flow and processing logic  
+    - Database schema design (conceptual)  
+    - API design considerations  
+    - Security and performance considerations  
+    - Integration points with existing systems  
+    Use pseudo-code or diagrams where helpful, but NO actual code implementation.
+
+    ### 7. Relevant Files to Review  
     List the most relevant files that would help developers understand the current setup, using this format:  
     - '/src/app.tsx' — Entry point for the application  
     - '/docs/CODING.md' — General coding guidelines  
     (Include relative paths and a short descriptive note for each)
 
-    ### 5. Technical Design (High-Level)  
-    Describe the intended changes or integrations without writing any code.  
-    Do not create a detailed task list.  
-    Explain the flow of logic and components at a high level — enough that another iteration can break it down into tasks later.  
-    Write this in full sentences and paragraphs, not bullet points.
-
-    ### 6. Open Questions / Concerns  
+    ### 8. Open Questions / Concerns  
     List open questions or uncertainties about the feature.  
     Each question should be assigned a priority:  
     - High — Critical for implementation and must be answered before proceeding.  
@@ -81,7 +95,7 @@
 
 <section title="Key Style Guidelines">
   <guideline number="1">Keep sentences short, declarative, and precise.</guideline>
-  <guideline number="2">Do not include any code snippets or implementation details.</guideline>
+  <guideline number="2">Do not include any code snippets or implementation details. Pseudo-code and conceptual diagrams are allowed.</guideline>
   <guideline number="3">Assume the next step will involve breaking your technical design into executable tasks.</guideline>
   <guideline number="4">Always maintain Markdown format consistency for readability.</guideline>
 </section>

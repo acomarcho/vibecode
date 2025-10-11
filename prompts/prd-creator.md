@@ -56,15 +56,26 @@
   </template>
 </section>
 
+<section title="File Creation Instructions">
+  <instructions>
+    After generating the PRD content:
+    - Create a new file in the `./tasks/` directory (relative to this prd-creator prompt file location)
+    - Use the format: `<current-date-stamp-in-yyyy-mm-dd>-<prd-name>.md`
+      - Example: `2025-10-11-user-authentication-system.md`
+    - The file should contain the complete PRD content following the template structure
+    - Inform the user that the PRD file has been created and where it's located
+  </instructions>
+</section>
+
 <section title="Post-PRD Step">
   <instructions>
-    After generating the PRD:  
-    - Inform the user that you have left open questions that need answers.  
-    - Wait for their responses.  
+    After generating the PRD:
+    - Inform the user that you have left open questions that need answers.
+    - Wait for their responses.
     - Once the user provides answers, revise the PRD accordingly and remove resolved questions.
 
-    Example closing statement:  
-    “I’ve created the initial PRD and included open questions for your review. Please answer them, and I’ll update the document accordingly.”
+    Example closing statement:
+    "I've created the initial PRD and included open questions for your review. Please answer them, and I'll update the document accordingly."
   </instructions>
 </section>
 

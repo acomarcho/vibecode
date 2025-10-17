@@ -84,16 +84,89 @@ Use @prompts/task-executor.md to implement ONLY task x up to task y from @tasks/
 
 ---
 
+## 4. Chain-of-Thought Planners
+
+**Purpose**: Systematic planning tools that help you think through problems before implementation. Use these for general planning tasks, debugging, or when you need to explore multiple solution approaches.
+
+### 4.1 Complete CoT Planner
+
+**Best for**: Complex features, architectural decisions, or situations with multiple valid approaches.
+
+#### How to Use
+
+```
+Use @prompts/complete-cot-planner.md to plan <describe what you want to accomplish>
+```
+
+#### What It Does
+
+Guides the agent through an 8-step comprehensive planning process:
+1. **Analyze Current State** - Deep dive into existing implementation
+2. **Define Target State** - Clarify goals and success criteria
+3. **Identify the Gap** - Determine what's missing or needs change
+4. **Surface Constraints** - Technical, business, and quality limitations
+5. **Explore Approaches** - Generate 2-3 alternative strategies
+6. **Evaluate Trade-offs** - Compare approaches across key criteria
+7. **Select Strategy** - Choose best approach with explicit reasoning
+8. **Outline Action Plan** - Define implementation phases
+
+#### When to Use
+
+- Starting a new feature or significant change
+- Multiple possible implementation approaches exist
+- Working with unfamiliar or complex systems
+- Need to justify technical decisions to others
+- Changes affect multiple components or systems
+
+---
+
+### 4.2 Quick CoT Planner
+
+**Best for**: Small features, bug fixes, refactoring, or straightforward changes.
+
+#### How to Use
+
+```
+Use @prompts/quick-cot-planner.md to plan <describe what you want to accomplish>
+```
+
+#### What It Does
+
+Streamlined 3-step planning process:
+1. **Gather Context** - Read relevant files and understand current state (mandatory)
+2. **Define Changes** - Identify what needs to change and the straightforward approach
+3. **Action Steps** - Outline implementation sequence with verification
+
+#### When to Use
+
+- Small feature additions with clear requirements
+- Bug fixes with identifiable root causes
+- Refactoring with an obvious approach
+- Updates to existing functionality (not new architectures)
+- Changes affecting 1-3 files or a single module
+
+#### When to Escalate
+
+Switch to complete-cot-planner if you discover:
+- Multiple valid approaches with unclear trade-offs
+- Changes affecting 4+ files or multiple modules
+- Significant architectural decisions required
+- High risk of breaking existing functionality
+
+---
+
 ## 📁 File Structure
 
 ```
 vibecode/
 ├── prompts/
-│   ├── prd-creator.md      # Creates PRDs from requirements
-│   ├── task-breakdown.md   # Breaks PRDs into tasks
-│   └── task-executor.md    # Implements specific tasks
-├── tasks/                  # Generated PRDs and task breakdowns
-└── README.md              # This file
+│   ├── prd-creator.md           # Creates PRDs from requirements
+│   ├── task-breakdown.md        # Breaks PRDs into tasks
+│   ├── task-executor.md         # Implements specific tasks
+│   ├── complete-cot-planner.md  # Comprehensive 8-step planning
+│   └── quick-cot-planner.md     # Streamlined 3-step planning
+├── tasks/                       # Generated PRDs and task breakdowns
+└── README.md                   # This file
 ```
 
 ---
@@ -105,10 +178,14 @@ vibecode/
 - **Review thoroughly** at each stage before proceeding
 - **Iterate** until you're satisfied with each output
 - **Follow the exact prompt format** for best results
+- **Use CoT planners** when you need to think through approaches before committing to implementation
+- **Start with quick-cot-planner** for simple tasks, escalate to complete-cot-planner if complexity emerges
 
 ---
 
-## 🔄 Complete Workflow Example
+## 🔄 Workflow Examples
+
+### Main Workflow: PRD → Tasks → Implementation
 
 1. **Define Feature**: `Use @prompts/prd-creator.md to create a PRD. What I want is to: 1. Add user authentication, 2. Create login/signup forms, 3. Add session management`
 
@@ -119,5 +196,22 @@ vibecode/
    - `Use @prompts/task-executor.md to implement ONLY task 3 up to task 4 from @tasks/2025-10-11-user-authentication.md.`
 
 Repeat until all tasks are complete!
+
+### Planning Workflow: Think Before Acting
+
+**For complex problems:**
+```
+Use @prompts/complete-cot-planner.md to plan implementing a caching layer with Redis that integrates with our existing API endpoints
+```
+
+**For quick fixes:**
+```
+Use @prompts/quick-cot-planner.md to plan fixing the email validation bug in the signup form
+```
+
+**Combined workflow:**
+1. Use quick-cot-planner to explore a bug fix
+2. If complexity emerges, switch to complete-cot-planner
+3. Once plan is solid, create a PRD if needed or implement directly
 
 ---

@@ -32,13 +32,15 @@
 
 <section title="Execution Protocol">
   <steps>
-    <step>Parse the PRD: extract “Relevant Files”, task list with numbers, acceptance criteria, constraints, and any code style rules.</step>
+    <step>**PRE-STEP 1 (CRITICAL):** Before starting any work, read the PRD completely from start to end. Then read ALL files listed in "Relevant Files to Review" from start to end. This complete context is essential for understanding the full scope and avoiding redundant work.</step>
+    <step>**PRE-STEP 2 (CRITICAL):** Read through ALL tasks in the task list (not just the ones you're asked to execute) and understand how they connect to each other. Even if you're only executing task 1, you must understand tasks 2, 3, etc., to avoid doing the same work twice or creating conflicts with future tasks. Map out dependencies and shared touchpoints before proceeding.</step>
+    <step>Parse the PRD: extract "Relevant Files", task list with numbers, acceptance criteria, constraints, and any code style rules.</step>
     <step>Confirm task scope: determine the exact set of task IDs to execute based on user instruction (e.g., single IDs or inclusive ranges).</step>
     <step>Read context: open the listed files. If a function/type is referenced externally, open only the nearest files to resolve interfaces. Note any such files for PRD update.</step>
     <step>Plan minimal changes: for each requested task, outline the smallest viable edits (rename vs. comment, extend existing module vs. create new file, etc.).</step>
     <step>Implement: provide concrete code changes. Favor in-place, incremental edits. Keep naming explicit to reduce the need for comments.</step>
     <step>Tests: add or update the smallest set of tests that pin the requested behavior and guard regressions. Avoid over-broad test scaffolding.</step>
-    <step>PRD update: mark completed tasks - [x], append newly-read files to “Relevant Files” as (ADDED FOR CONTEXT), and write a concise “Changes Summary”.</step>
+    <step>PRD update: mark completed tasks - [x], append newly-read files to "Relevant Files" as (ADDED FOR CONTEXT), and write a concise "Changes Summary".</step>
     <step>Finish: include a closing note asking the user to review and provide feedback.</step>
   </steps>
 </section>

@@ -39,11 +39,11 @@
 
 <section title="Repository Exploration Protocol">
   <steps>
+    <step>**PRE-STEP (CRITICAL):** Before any exploration or task breakdown, read the PRD completely from start to end. Then read ALL files listed in "Relevant Files to Review" from start to end. This complete context is essential for creating an accurate, coherent task breakdown that avoids duplication or missed dependencies.</step>
     <step>List project structure (ls, tree) to find relevant modules, services, and configurations.</step>
     <step>Search for relevant features, functions, and keywords (grep/rg) based on PRD terms.</step>
     <step>Open minimal but representative files (cat) to understand interfaces, models, and flow.</step>
-    <step>Stop once you can identify which files or modules will be extended or added.  
-    Record these findings for the updated “Relevant Files to Review”.</step>
+    <step>Every time you can identify which files or modules will be extended or added, record these findings for the updated "Relevant Files to Review".</step>
   </steps>
 </section>
 
